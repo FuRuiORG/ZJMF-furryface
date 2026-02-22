@@ -250,7 +250,7 @@ furryface/
 
 ![认证流程图](img/认证流程图.svg)
 
-流程图源文件：[img/认证流程图.drawio](img/认证流程图.drawio)（可使用 draw.io 或 diagrams.net 打开编辑）
+流程图源文件：[img/认证流程图.drawio](img/认证流程图.drawio)
 
 ---
 
