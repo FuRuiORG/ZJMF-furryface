@@ -1,0 +1,176 @@
+<mxfile host="app.diagrams.net" modified="2026-02-22T00:00:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram name="认证流程" id="certification-flow">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 用户发起认证请求 -->
+        <mxCell id="start" value="用户发起认证请求" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- 填写姓名和身份证号 -->
+        <mxCell id="input" value="填写姓名和身份证号" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="170" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="start" target="input">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 身份证校验 -->
+        <mxCell id="validate" value="身份证号码校验" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="260" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="input" target="validate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 校验失败 -->
+        <mxCell id="fail1" value="校验失败&#xa;返回错误信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="300" y="270" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" value="失败" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;fontColor=#b85450;" edge="1" parent="1" source="validate" target="fail1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 调用活体检测API -->
+        <mxCell id="api1" value="调用活体检测API&#xa;获取认证链接" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="370" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4" value="成功" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#82b366;fontColor=#82b366;" edge="1" parent="1" source="validate" target="api1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 生成二维码 -->
+        <mxCell id="qrcode" value="生成二维码页面" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="api1" target="qrcode">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 用户扫码 -->
+        <mxCell id="scan" value="用户扫码进行&#xa;活体检测" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="550" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="qrcode" target="scan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 轮询检测结果 -->
+        <mxCell id="poll" value="轮询活体检测结果" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="640" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow7" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="scan" target="poll">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 活体检测判断 -->
+        <mxCell id="livecheck" value="活体检测&#xa;是否通过？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="730" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow8" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="poll" target="livecheck">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 活体检测失败 -->
+        <mxCell id="fail2" value="活体检测失败&#xa;返回错误信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="300" y="740" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow9" value="失败" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;fontColor=#b85450;" edge="1" parent="1" source="livecheck" target="fail2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 获取人脸图片 -->
+        <mxCell id="faceimg" value="获取人脸图片&#xa;(Base64)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="840" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow10" value="成功" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#82b366;fontColor=#82b366;" edge="1" parent="1" source="livecheck" target="faceimg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 调用人像比对API -->
+        <mxCell id="api2" value="调用人像比对API&#xa;身份验证" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="80" y="930" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow11" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="faceimg" target="api2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 比对结果判断 -->
+        <mxCell id="facecheck" value="人像比对&#xa;是否通过？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1020" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow12" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="api2" target="facecheck">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 比对失败 -->
+        <mxCell id="fail3" value="比对失败&#xa;返回错误信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1030" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow13" value="失败" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;fontColor=#b85450;" edge="1" parent="1" source="facecheck" target="fail3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 认证成功 -->
+        <mxCell id="success" value="认证成功&#xa;更新认证状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1130" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow14" value="成功" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#82b366;fontColor=#82b366;" edge="1" parent="1" source="facecheck" target="success">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 结束 -->
+        <mxCell id="end" value="结束" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1220" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow15" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#666666;" edge="1" parent="1" source="success" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- 图例 -->
+        <mxCell id="legend_title" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="500" y="120" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1_text" value="用户操作" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="115" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2_text" value="API调用" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="145" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend3" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="500" y="180" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3_text" value="判断条件" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="175" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="500" y="210" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend4_text" value="成功状态" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="205" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="500" y="240" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend5_text" value="失败状态" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="235" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
